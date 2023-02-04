@@ -45,4 +45,4 @@ jobs:
           git push origin feature/${{ github.run_number }}
           echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} > token.txt
           gh auth login --with-token < token.txt
-          gh pr create  --title "Update Tag ${{ github.run_number }}" --body "Please Merge!!"
+          gh pr create --title "Update Tag ${{ github.run_number }}" --body "Please Merge!!"
