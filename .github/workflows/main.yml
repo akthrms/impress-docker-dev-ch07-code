@@ -9,10 +9,10 @@ jobs:
     name: GitOps Workflow
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build an image from Dockerfile
+      - name: Build an Image from Dockerfile
         run: |
           DOCKER_BUILDKIT=1 docker image build . -f app/Dockerfile --tag ${{ secrets.USERNAME }}/gitops-go-app:${{ github.run_number }}
 
@@ -25,7 +25,7 @@ jobs:
           ignore-unfixed: true
           severity: "CRITICAL,HIGH"
 
-      - name: Push image to Docker Hub
+      - name: Push Image to Docker Hub
         run: |
           docker login docker.io --username ${{ secrets.USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
           docker image push ${{ secrets.USERNAME }}/gitops-go-app:${{ github.run_number }}
